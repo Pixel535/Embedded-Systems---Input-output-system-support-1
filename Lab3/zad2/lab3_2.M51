@@ -1,0 +1,119 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        05/09/2022  18:29:04  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE lab3_2.obj TO lab3_2 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  lab3_2.obj (LAB3_2)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  lab3_2 (LAB3_2)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+                    0008H     0018H                  *** GAP ***
+            DATA    0020H     0001H     BIT_ADDR     ?BA?LAB3_2
+            BIT     0021H.0   0000H.1   UNIT         _BIT_GROUP_
+                    0021H.1   0000H.7                *** GAP ***
+            IDATA   0022H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0033H     UNIT         ?PR?MAIN?LAB3_2
+            CODE    0036H     000DH     UNIT         ?PR?WAIT?LAB3_2
+            CODE    0043H     000CH     UNIT         ?C_C51STARTUP
+            CODE    004FH     0004H     UNIT         ?CO?LAB3_2
+
+
+
+OVERLAY MAP OF MODULE:   lab3_2 (LAB3_2)
+
+
+SEGMENT                           BIT_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?LAB3_2
+
+?PR?MAIN?LAB3_2                0021H.0  0000H.1
+  +--> ?CO?LAB3_2
+  +--> ?PR?WAIT?LAB3_2
+
+
+
+SYMBOL TABLE OF MODULE:  lab3_2 (LAB3_2)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        LAB3_2
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/09/2022  18:29:04  PAGE 2
+
+
+  B:0080H.0       PUBLIC        P0_0
+  C:004FH         PUBLIC        Tab
+  C:0003H         PUBLIC        main
+  D:0020H         PUBLIC        Key
+  C:0036H         PUBLIC        wait
+  B:0020H.1       PUBLIC        Key_1
+  B:0020H.2       PUBLIC        Key_2
+  B:0020H.3       PUBLIC        Key_3
+  -------         PROC          WAIT
+  -------         DO            
+  D:0007H         SYMBOL        x
+  D:0006H         SYMBOL        y
+  -------         ENDDO         
+  C:0036H         LINE#         28
+  C:0036H         LINE#         29
+  C:0036H         LINE#         31
+  C:0038H         LINE#         32
+  C:0038H         LINE#         33
+  C:003EH         LINE#         34
+  C:0042H         LINE#         35
+  -------         ENDPROC       WAIT
+  -------         PROC          MAIN
+  -------         DO            
+  D:0005H         SYMBOL        index
+  B:0021H.0       SYMBOL        Zezwalaj
+  -------         ENDDO         
+  C:0003H         LINE#         39
+  C:0003H         LINE#         40
+  C:0003H         LINE#         41
+  C:0005H         LINE#         42
+  C:0007H         LINE#         44
+  C:0007H         LINE#         45
+  C:0007H         LINE#         46
+  C:000EH         LINE#         47
+  C:0011H         LINE#         48
+  C:0019H         LINE#         49
+  C:0019H         LINE#         50
+  C:001CH         LINE#         51
+  C:001CH         LINE#         52
+  C:001EH         LINE#         53
+  C:0021H         LINE#         54
+  C:0023H         LINE#         55
+  C:0025H         LINE#         56
+  C:0025H         LINE#         57
+  C:0027H         LINE#         59
+  C:0027H         LINE#         60
+  C:0030H         LINE#         61
+  C:0032H         LINE#         62
+  C:0034H         LINE#         63
+  C:0034H         LINE#         64
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        LAB3_2
+
+Program Size: data=10.1 xdata=0 code=83
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

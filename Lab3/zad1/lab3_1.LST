@@ -1,0 +1,79 @@
+C51 COMPILER V9.51   LAB3_1                                                                05/10/2022 13:05:32 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE LAB3_1
+OBJECT MODULE PLACED IN lab3_1.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE lab3_1.c OMF2 BROWSE DEBUG TABS(2)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          #define Dioda P0_0
+   4          #define Zapal 0
+   5          #define Zgas 1
+   6          
+   7          #define Warunek (Key_3&Key_2&Key_1)==0
+   8          
+   9          unsigned char code Tab[] = {0x7F,0xBF,0xDF,0xEF};
+  10          unsigned char bdata Key;
+  11          sbit Key_3 = Key^3;
+  12          sbit Key_2 = Key^2;
+  13          sbit Key_1 = Key^1;
+  14          
+  15          void Delay(void)
+  16          {
+  17   1         unsigned char data x,y;
+  18   1         for(x=0;x<200;x++)
+  19   1            {
+  20   2               for(y=0;y<200;y++) {;}
+  21   2            }
+  22   1      }
+  23          
+  24          void main(void)
+  25          {
+  26   1         unsigned char data index = 0;
+  27   1         bit Zezwalaj = 1;
+  28   1        
+  29   1         while(1)
+  30   1         {
+  31   2              P2 = Tab[index];
+  32   2              Key = P2;
+  33   2              if (Warunek)
+  34   2              { 
+  35   3                if (Zezwalaj == 1)
+  36   3                {
+  37   4                      Dioda = Zapal; 
+  38   4                      Delay(); 
+  39   4                      Dioda = Zgas;
+  40   4                      Zezwalaj = 0;
+  41   4                }
+  42   3              }
+  43   2              else
+  44   2              {
+  45   3                  if (index<3) {index++;}
+  46   3                  else {index = 0;}
+  47   3                  Zezwalaj = 1;
+  48   3              }
+  49   2          }
+  50   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     64    ----
+   CONSTANT SIZE    =      4    ----
+C51 COMPILER V9.51   LAB3_1                                                                05/10/2022 13:05:32 PAGE 2   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,129 @@
+C51 COMPILER V9.51   LAB3_3                                                                05/10/2022 13:08:04 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE LAB3_3
+OBJECT MODULE PLACED IN lab3_3.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE lab3_3.c OMF2 BROWSE DEBUG TABS(2)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          #define Dwa 0xEB
+   4          #define Szesc 0xDD
+   5          #define Siedem 0xB7
+   6          #define Osiem 0xBB
+   7          #define Hash 0x7D
+   8          #define Gwiazdka 0x77
+   9          
+  10          #define Dioda P0_0
+  11          #define Zapal 0
+  12          #define Zgas 1
+  13          
+  14          #define Warunek (Key_3&Key_2&Key_1)==0
+  15          
+  16          unsigned char code Tab[] = {0x7F,0xBF,0xDF,0xEF};
+  17          unsigned char bdata Key;
+  18          sbit Key_3 = Key^3;
+  19          sbit Key_2 = Key^2;
+  20          sbit Key_1 = Key^1;
+  21          
+  22          void Delay(void)
+  23          {
+  24   1         unsigned char data x,y;
+  25   1         for(x=0;x<150;x++)
+  26   1            {
+  27   2               for(y=0;y<150;y++) {;}
+  28   2            }
+  29   1      }
+  30          
+  31          void Delay2(void)
+  32          {
+  33   1         unsigned char data x,y;
+  34   1         for(x=0;x<200;x++)
+  35   1            {
+  36   2               for(y=0;y<200;y++) {;}
+  37   2            }
+  38   1      }
+  39          
+  40          void main(void)
+  41          {
+  42   1        unsigned char data index = 0;
+  43   1        unsigned char poprawnosc = 0;
+  44   1        unsigned char i = 0;
+  45   1        bit Zezwalaj = 1;
+  46   1        while(1)
+  47   1        {
+  48   2          P2 = Tab[index];
+  49   2          Key = P2;
+  50   2          if (Warunek)
+  51   2          { 
+  52   3            if (Zezwalaj == 1)
+  53   3            {
+  54   4              if(Key == Szesc && poprawnosc == 0)
+  55   4              {
+C51 COMPILER V9.51   LAB3_3                                                                05/10/2022 13:08:04 PAGE 2   
+
+  56   5                poprawnosc = 1;
+  57   5              }
+  58   4              else if(Key == Siedem && poprawnosc == 1)
+  59   4              {
+  60   5                poprawnosc = 2;
+  61   5              }
+  62   4              else if(Key == Osiem && poprawnosc == 2)
+  63   4              {
+  64   5                poprawnosc = 3;
+  65   5              }
+  66   4              else if(Key == Dwa && poprawnosc == 3)
+  67   4              {
+  68   5                poprawnosc = 4;
+  69   5              }
+  70   4              else if(Key == Hash && poprawnosc == 4)
+  71   4              {
+  72   5                Dioda = Zapal; Delay(); Dioda = Zgas; Delay();
+  73   5                Dioda = Zapal; Delay(); Dioda = Zgas; Delay();
+  74   5                poprawnosc = 0;
+  75   5              }
+  76   4              else if(Key == Gwiazdka && poprawnosc == 4)
+  77   4              {
+  78   5                for(i = 0; i <= 1; i++)
+  79   5                {
+  80   6                  Dioda = Zapal; Delay(); Dioda = Zgas; Delay();
+  81   6                  Dioda = Zapal; Delay(); Dioda = Zgas; Delay();
+  82   6                  Dioda = Zapal; Delay(); Dioda = Zgas; Delay2();
+  83   6                }
+  84   5                poprawnosc = 0;
+  85   5              }
+  86   4              else
+  87   4              {
+  88   5                poprawnosc = 0;
+  89   5              }
+  90   4              Zezwalaj = 0;
+  91   4            }
+  92   3          }
+  93   2          else
+  94   2          {
+  95   3            if (index<3) {index++;}
+  96   3            else {index = 0;}
+  97   3            Zezwalaj = 1;
+  98   3          }
+  99   2        }
+ 100   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    188    ----
+   CONSTANT SIZE    =      4    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
